@@ -66,7 +66,18 @@ public class CardTrick {
             }
         }
 
-        class DisplayComparator implements Comparator<Card> {
+//        class DisplayComparator implements Comparator<Card> {
+//
+//            @Override
+//            public int compare(Card card1, Card card2) {
+//                int comparison = card1.getSuit().getColor().compareTo(card2.getSuit().getColor());
+//                comparison = (comparison != 0) ? comparison : card1.getSuit().compareTo(card2.getSuit());
+//                comparison = (comparison != 0) ? comparison : card1.getRank().compareTo(card2.getRank());
+//                return comparison;
+//            }
+//        }
+
+        Comparator<Card> comparator = new Comparator<>() {
 
             @Override
             public int compare(Card card1, Card card2) {
@@ -75,9 +86,8 @@ public class CardTrick {
                 comparison = (comparison != 0) ? comparison : card1.getRank().compareTo(card2.getRank());
                 return comparison;
             }
-        }
+        };
 
-        Comparator<Card> comparator = new DisplayComparator();
         Collections.sort((LinkedList<Card>) blackPile, comparator);
         Collections.sort((LinkedList<Card>) redPile, comparator);
         System.out.printf("Black: count=%d, cards=%s%n", blackCount, blackPile);
